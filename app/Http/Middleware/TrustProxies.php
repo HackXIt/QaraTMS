@@ -12,7 +12,7 @@ class TrustProxies extends Middleware
      *
      * @var array|string|null
      */
-    protected $proxies;
+    protected $proxies = '*';  // <-- This trusts all proxies, which is fine for Traefik-managed setups
 
     /**
      * The headers that should be used to detect proxies.
@@ -25,4 +25,5 @@ class TrustProxies extends Middleware
         Request::HEADER_X_FORWARDED_PORT |
         Request::HEADER_X_FORWARDED_PROTO |
         Request::HEADER_X_FORWARDED_AWS_ELB;
+    //protected $headers = Request::HEADER_X_FORWARDED_ALL;  // <-- Important line!
 }
